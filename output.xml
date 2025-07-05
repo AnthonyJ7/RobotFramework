@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.1 (Python 3.11.0 on win32)" generated="2025-06-19T15:50:48.240447" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Busqueda Meli" source="C:\Users\ASUS\Desktop\Practica-Robot\test_busqueda_meli.robot">
+<kw name="Abrir Navegador" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-06-19T15:50:48.478798" level="INFO">Opening browser 'Chrome' to base url 'https://www.mercadolibre.com.ec/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-06-19T15:50:48.478798" elapsed="5.999448"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-06-19T15:50:54.478246" elapsed="0.820110"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//input[@type="text"]</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-06-19T15:50:55.300719" elapsed="0.010412"/>
+</kw>
+<status status="PASS" start="2025-06-19T15:50:48.478798" elapsed="6.832333"/>
+</kw>
+<test id="s1-t1" name="01 - Buscar Producto Y Validar Resultados" line="15">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-06-19T15:50:55.311131" level="INFO">Typing text 'laptop' into text field 'xpath=//input[@type="text"]'.</msg>
+<arg>xpath=//input[@type="text"]</arg>
+<arg>${PRODUCTO}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-19T15:50:55.311131" elapsed="0.118583"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2025-06-19T15:50:55.429714" level="INFO">Sending key(s) ('RETURN',) to xpath=//input[@type="text"] element.</msg>
+<msg time="2025-06-19T15:50:55.780057" level="INFO">Pressing special key RETURN to element.</msg>
+<msg time="2025-06-19T15:50:55.780057" level="INFO">Releasing special key RETURN.</msg>
+<arg>xpath=//input[@type="text"]</arg>
+<arg>RETURN</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2025-06-19T15:50:55.429714" elapsed="1.363847"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//li[contains(@class, "ui-search-layout__item")]</arg>
+<arg>20s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-06-19T15:50:56.795102" elapsed="0.044479"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-06-19T15:50:56.844420" level="INFO">Current page contains element 'xpath=//li[contains(@class, "ui-search-layout__item")]'.</msg>
+<arg>xpath=//li[contains(@class, "ui-search-layout__item")]</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2025-06-19T15:50:56.839581" elapsed="0.004839"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-19T15:51:01.853668" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-19T15:50:56.852938" elapsed="5.000730"/>
+</kw>
+<status status="PASS" start="2025-06-19T15:50:55.311131" elapsed="6.542537"/>
+</test>
+<test id="s1-t2" name="02 - Validar Que Existen Al Menos 5 Resultados" line="22">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//li[contains(@class, "ui-search-layout__item")]</arg>
+<arg>20s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-06-19T15:51:01.853668" elapsed="0.033718"/>
+</kw>
+<kw name="Get Element Count" owner="SeleniumLibrary">
+<msg time="2025-06-19T15:51:01.897134" level="INFO">${elementos} = 54</msg>
+<var>${elementos}</var>
+<arg>xpath=//li[contains(@class, "ui-search-layout__item")]</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<status status="PASS" start="2025-06-19T15:51:01.887386" elapsed="0.009748"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-19T15:51:01.897134" level="INFO">Número de resultados encontrados: 54</msg>
+<arg>Número de resultados encontrados: ${elementos}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-19T15:51:01.897134" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${elementos} &gt;= 5</arg>
+<arg>El número de resultados fue menor a 5</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-06-19T15:51:01.897134" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-19T15:51:06.897393" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-19T15:51:01.897134" elapsed="5.000259"/>
+</kw>
+<status status="PASS" start="2025-06-19T15:51:01.853668" elapsed="5.043725"/>
+</test>
+<test id="s1-t3" name="03 - Aplicar Orden Por Mayor Precio" line="29">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//span[contains(text(), "Más relevantes")]</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-19T15:51:06.897393" elapsed="0.092301"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-06-19T15:51:06.989694" level="INFO">Clicking element 'xpath=//span[contains(text(), "Más relevantes")]'.</msg>
+<arg>xpath=//span[contains(text(), "Más relevantes")]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-19T15:51:06.989694" elapsed="0.067001"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-19T15:51:09.062480" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-19T15:51:07.060845" elapsed="2.001635"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//li//span[contains(text(), "Mayor precio")]</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-19T15:51:09.062480" elapsed="0.022751"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-06-19T15:51:09.085231" level="INFO">Clicking element 'xpath=//li//span[contains(text(), "Mayor precio")]'.</msg>
+<arg>xpath=//li//span[contains(text(), "Mayor precio")]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-19T15:51:09.085231" elapsed="0.179648"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-19T15:51:14.265439" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-19T15:51:09.264879" elapsed="5.000560"/>
+</kw>
+<status status="PASS" start="2025-06-19T15:51:06.897393" elapsed="7.368046"/>
+</test>
+<test id="s1-t4" name="04 - Acceder Al Detalle Del Primer Producto" line="37">
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-06-19T15:51:14.265439" level="INFO">Clicking element 'xpath=//button[contains(text(),"Aceptar")]'.</msg>
+<arg>xpath=//button[contains(text(),"Aceptar")]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-19T15:51:14.265439" elapsed="0.061599"/>
+</kw>
+<arg>Click Element</arg>
+<arg>xpath=//button[contains(text(),"Aceptar")]</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2025-06-19T15:51:14.265439" elapsed="0.061599"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=(//li[contains(@class, "ui-search-layout__item")]//a[contains(@href, '/MEC-')])[1]</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-19T15:51:14.327038" elapsed="0.023301"/>
+</kw>
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>xpath=(//li[contains(@class, "ui-search-layout__item")]//a[contains(@href, '/MEC-')])[1]</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2025-06-19T15:51:14.350339" elapsed="0.282099"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-06-19T15:51:14.632438" level="INFO">Clicking element 'xpath=(//li[contains(@class, "ui-search-layout__item")]//a[contains(@href, '/MEC-')])[1]'.</msg>
+<arg>xpath=(//li[contains(@class, "ui-search-layout__item")]//a[contains(@href, '/MEC-')])[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-19T15:51:14.632438" elapsed="1.786807"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-19T15:51:21.419899" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-19T15:51:16.419245" elapsed="5.000654"/>
+</kw>
+<status status="PASS" start="2025-06-19T15:51:14.265439" elapsed="7.154460"/>
+</test>
+<test id="s1-t5" name="05 - Validar Precio En La Página De Detalle" line="44">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//span[@class="andes-money-amount__fraction"]</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-06-19T15:51:21.421916" elapsed="0.034564"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-06-19T15:51:21.468104" level="INFO">${precio} = 3.075</msg>
+<var>${precio}</var>
+<arg>xpath=//span[@class="andes-money-amount__fraction"]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-19T15:51:21.456480" elapsed="0.011624"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-06-19T15:51:21.468104" level="INFO">Length is 5.</msg>
+<arg>${precio}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-06-19T15:51:21.468104" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-19T15:51:26.468473" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-19T15:51:21.468104" elapsed="5.000369"/>
+</kw>
+<status status="PASS" start="2025-06-19T15:51:21.419899" elapsed="5.048574"/>
+</test>
+<kw name="Cerrar Navegador" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-06-19T15:51:26.468473" elapsed="2.281294"/>
+</kw>
+<status status="PASS" start="2025-06-19T15:51:26.468473" elapsed="2.281294"/>
+</kw>
+<status status="PASS" start="2025-06-19T15:50:48.240447" elapsed="40.509320"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Test Busqueda Meli" id="s1" pass="5" fail="0" skip="0">Test Busqueda Meli</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
